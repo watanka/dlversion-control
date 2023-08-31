@@ -1,10 +1,11 @@
 from database import Base
-from sqlalchemy import Column, String, Integer, ForeignKey, DateTime, relationship
+from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
+from sqlalchemy.orm import relationship
 from datetime import datetime
 
 
 class Project(Base) :
-    __tablename__ = 'experiment'
+    __tablename__ = 'project'
 
     id = Column('id', Integer, primary_key = True, autoincrement = True)
     projectname = Column('projectname', String)
@@ -18,8 +19,8 @@ class Model(Base) :
     id = Column(Integer, primary_key = True, autoincrement = True)
     modelname = Column('modelname', String)
     projectid = Column(Integer, ForeignKey('project.id'))
-    project = relationship('Project', backref = 'project')
-    description = Column('description', String)
+    project = relationship('Project', backref = 'models')
+    description = Column('description', String, nullable = True)
 
 
 class Experiment(Base) :
@@ -27,6 +28,7 @@ class Experiment(Base) :
 
     id = Column(Integer, primary_key = True, autoincrement = True)
     modelid = Column(Integer, ForeignKey('model.id'))
+    model = relationship('Model', backref= 'experiments')
     projectid = Column(Integer, ForeignKey('project.id'))
-    description = Column('description', String)
+    description = Column('description', String, nullable = True)
 
