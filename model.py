@@ -1,6 +1,7 @@
 from database import Base
 from sqlalchemy import Column, String, Integer, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql.functions import current_timestamp
 from datetime import datetime
 
 
@@ -10,7 +11,7 @@ class Project(Base) :
     id = Column('id', Integer, primary_key = True, autoincrement = True)
     projectname = Column('projectname', String)
     description = Column('description', String, nullable = True)
-    created_at = Column('created_at', DateTime, default = datetime.now())
+    created_at = Column('created_at', DateTime, server_default = current_timestamp())
 
 
 class Model(Base) :

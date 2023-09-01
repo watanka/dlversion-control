@@ -7,7 +7,7 @@ def list_projects(db_session : Session) :
 
 def create_project(db_session : Session, projectname, description) :
     new_project = Project(projectname = projectname,
-                          description = description
+                          description = description,
                           )
 
     db_session.add(new_project)

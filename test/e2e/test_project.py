@@ -34,7 +34,7 @@ def test_list_projects() :
     data = response.json()
 
 def test_create_project() :
-    new_project = Project(projectname = 'CLOVA',
+    new_project = Project(projectname = 'CLOVAX',
                           description = 'building scene text detection'
                           )
     
@@ -45,7 +45,7 @@ def test_create_project() :
                     }
                 )
     
-    assert response.status_code == 204 # No response
+    assert response.status_code == 200 # No response
     data = response.json()
 
     assert data['projectname'] == new_project.projectname

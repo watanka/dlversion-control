@@ -6,6 +6,6 @@ class Project(BaseModel) :
     # id : int
     projectname : str
     description : str | None
-    created_at : datetime | None
+    # created_at : datetime | None
 
     

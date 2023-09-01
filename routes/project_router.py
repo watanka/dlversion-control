@@ -9,14 +9,15 @@ router = APIRouter(
     prefix = '/project'
 )
 
-@router.post('/create', status_code = status.HTTP_204_NO_CONTENT)
-def create_project(projectname : str, 
-                   description : str, 
+@router.post('/create/', response_model = project_schema.Project)
+def create_project(_project : project_schema.Project,
                    db_session: Session = Depends(get_db)) :
-    project_crud.create_project(db_session = db_session,
-                                projectname = projectname,
-                                description = description
+    new_project = project_crud.create_project(db_session = db_session,
+                                projectname = _project.projectname,
+                                description = _project.description
                                 )
+
+    return new_project
 
 @router.get('/', response_model = List[project_schema.Project])
 def list_projects(db_session: Session = Depends(get_db)) :
