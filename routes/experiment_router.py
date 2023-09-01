@@ -9,6 +9,6 @@ router = APIRouter(
 )
 
 
-@router.post('/{/create', status_code = status.HTTP_204_NO_CONTENT)
+@router.post('/create', status_code = status.HTTP_204_NO_CONTENT)
 def create_experiment() :
     pass
